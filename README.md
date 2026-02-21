@@ -1,8 +1,10 @@
 # AO-Gem-Set-Calculator
 A modular python script to calculate the best gems affixes combinations in the roblox game [Arcane Odyssey](https://www.roblox.com/games/3272915504/Arcane-Odyssey).  
-Created by @github/Refract271
+Created by Refract271
 
 ## How to use?  
+
+Simply download or copy-pase the [diveSets.py](https://github.com/Refract271/AO-Gem-Set-Calculator/blob/main/diveSets.py) file. If you are already familiar with python it's all explained in there but down below is a *slightly* more in-depth explanation
 
 ### Calling the function :
 
