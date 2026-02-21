@@ -57,5 +57,6 @@ gems = {
 > You can add as many gems and affixes as you want, it's technically infinitely scaleable
 
 ## Future Updates + Contact 
-This was made for fun as my first published git-hub code. I might update it to work with stats too and let you simulate jewel crafting. This would probably help clear the confusion regarding jewels in the game.
-If you have questions DM Refract271 in the Official AO discord server.
+This was made for fun as my first published git-hub code. I might update it to work with stats too and let you simulate jewel crafting. This would probably help clear the confusion regarding jewels in the game.  
+Probably going to clean up the output at least.  
+If you have questions DM **Refract271** in the Official AO discord server.
