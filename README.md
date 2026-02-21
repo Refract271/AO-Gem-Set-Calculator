@@ -4,11 +4,11 @@ Created by Refract271
 
 ## How to use?  
 
-Simply download or copy-pase the [diveSets.py](https://github.com/Refract271/AO-Gem-Set-Calculator/blob/main/diveSets.py) file. If you are already familiar with python it's all explained in there but down below is a *slightly* more in-depth explanation
+Simply download or copy-paste the [diveSets.py](https://github.com/Refract271/AO-Gem-Set-Calculator/blob/main/diveSets.py) file. If you are already familiar with python it's all explained in it but down below is a *slightly* more in-depth explanation.
 
 ### Calling the function :
 
-You will need to edit the line that calls the function and give it the arguments you want then run the code:
+You will need to edit the line that calls the function and give it the arguments you want to then run the code:
 
 ```python
 print(bestSet(diveGems, 15, "airCap", 0, "swimSpeed"))
@@ -26,7 +26,7 @@ All the arguments are explained in the code but here is a run-through:
   
 - **gemSlots** : *int* : how many gem slots you want to use, self explanatory
   
-- **minimumStat** : *string* : the stat you want a minimum of (*in the case of dive set it was air capacity*). If you don't need that just set **minimumPercentage** to 0 and **minimumStat** to whatever *string* you want.
+- **minimumStat** : *string* : the stat you want a minimum of (*in the case of a dive set it was air capacity*). If you don't need that just set **minimumPercentage** to 0 and **minimumStat** to any *string* you want.
   
 - **minimumPercentage** : *int* : the minimum percentage you want for the **minimumStat**, ex: 99% air cap. Set to 0 to not use it.
   
@@ -36,7 +36,7 @@ All the arguments are explained in the code but here is a run-through:
 > Respect the *types* of the **arguments** or it will just error and not work.
 
 ### Gems dict structure :
-here is also the structure of the dictionary used to input gems and their stats :  
+here is the structure of the dictionary used to input gems and their stats :  
 
 ```python
 gems = {
@@ -57,7 +57,7 @@ gems = {
 > You can add as many gems and affixes as you want, it's technically infinitely scaleable
 
 ## Future Updates + Contact 
-This was made for fun as my first published git-hub code. I might update it to work with stats too and let you simulate jewel crafting. This would probably help clear the confusion regarding jewels in the game.  
+This was made for fun as my first published git-hub code. I might update it to work with main stats too and let you simulate jewel crafting. This would probably help clear the confusion regarding jewels in the game.  
   
 Probably going to clean up the output at least.  
 
