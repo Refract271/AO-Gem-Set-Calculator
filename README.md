@@ -4,14 +4,16 @@ Created by Refract271
 
 ## How to use?  
 
-Simply download or copy-paste the [diveSets.py](https://github.com/Refract271/AO-Gem-Set-Calculator/blob/main/diveSets.py) file. If you are already familiar with python it's all explained in it but down below is a *slightly* more in-depth explanation.
+Simply download or copy-paste the [diveSets.py](https://github.com/Refract271/AO-Gem-Set-Calculator/blob/main/diveSets.py) file.  
+Running the program will create a .txt file with the output, the file should be located in the same folder as the script.  
+If you are already familiar with python it's all explained in it but down below is a *slightly* more in-depth explanation.
 
 ### Calling the function :
 
 You will need to edit the line that calls the function and give it the arguments you want to then run the code:
 
 ```python
-print(bestSet(diveGems, 15, "airCap", 0, "swimSpeed"))
+bestSet(diveGems, 15, "airCap", 0, "swimSpeed")
 ```
 
 > [!NOTE]
@@ -43,22 +45,21 @@ gems = {
     "name" : {
         "affix1" : int,
         "affix2" : int,
-        "amount" : 0
     },
 
     "name2" : {
         "affix1" : int,
         "affix2" : int,
-        "amount" : 0
     },
 ```
 
 > [!NOTE]
-> You can add as many gems and affixes as you want, it's technically infinitely scaleable
+> You can add as many gems and affixes as you want, however it currently only outputs the affixes used to filter 
 
 ## Future Updates + Contact 
 This was made for fun as my first published git-hub code. I might update it to work with main stats too and let you simulate jewel crafting. This would probably help clear the confusion regarding jewels in the game.  
   
-Probably going to clean up the output at least.  
+- Probably going to clean up the output at least. **[Done]**
+- It bugs me that it's not fully scaleable so might be the next update
 
 If you have questions DM **Refract271** in the Official AO discord server.
