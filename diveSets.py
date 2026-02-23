@@ -1,22 +1,19 @@
 import itertools
 
 diveGems = {
-    "pureSwim" : {
+    "fusedSwimPrimary" : {
         "swimSpeed" : 11,
         "airCap" : 5.5,
-        "amount" : 0
     },
 
-    "pureAir" : {
+    "fusedAirPrimary" : {
         "airCap" : 22,
         "swimSpeed" : 2.76,
-        "amount" : 0
     },
 
     "mirror" : {
         "airCap" : 13.75,
         "swimSpeed" : 6.88,
-        "amount" : 0
     }
 }
 
@@ -42,41 +39,51 @@ def possibleCombinations(gemsSet, gemSlots):
     # gemsSet : set of string   -> refer to dictToSet function
     # gemSlots : int            -> how many gem slots you are using
 
-    # returns type : list of tuple of string    -> ex: 
-    # [("mirror", "mirror", "mirror", "mirror"), ("mirror", "mirror", "mirror", "pureSwim"), ..., ("pureSwim", "pureAir", "pureAir", "pureAir"), ("pureAir", "pureAir", "pureAir", "pureAir")]
+    # returns type : set of tuple of string    -> ex: 
+    # {("mirror", "mirror", "mirror", "mirror"), ("mirror", "mirror", "mirror", "pureSwim"), ..., ("pureSwim", "pureAir", "pureAir", "pureAir"), ("pureAir", "pureAir", "pureAir", "pureAir")}
 
-    return list(itertools.combinations_with_replacement(dictToSet(diveGems), gemSlots))
+    return set(itertools.combinations_with_replacement(dictToSet(diveGems), gemSlots))
 
-def statSum(gems, gemSlots, stat, allCombinations, i):
+def statSum(gems, stat, combination):
     
     # sums all values of the chosen stat
 
     # gems : dict       -> the gems you want to use, same format as the diveGems dict
-    # gemSlots : int    -> how many gem slots you are using
     # stat : string     -> the stat summed 
     # allCombinations : list of tuples of string    -> refer to possibleCombinations function
-    # i : int           -> the indice of the tuple in allCombinations
 
     # returns statTot : int -> sum of the desired stat for one specific combination
 
     statTot = 0
 
-    for j in range(gemSlots):
+    for num, i in enumerate(combination):
 
-        if stat not in gems[(allCombinations[i])[j]]:
+        check = gems[(combination)[num]]
+
+        if stat not in check:
             pass
         
         else:
-            statTot += gems[(allCombinations[i])[j]][stat]
+            statTot += check[stat]
 
     return statTot
 
-def editAmount(gems, combination):
-    
-    for i in combination:
-        gems[i]["amount"] += 1
+def writeGems(gems, i):
 
-    return gems
+    # avoids nesting loops mainly
+
+    # gems : dict       -> the gems you want to use, same format as the diveGems dict
+    # i : tuple of strings -> an element of bestSets in bestSet function
+
+    # returns : niceText : string -> it's a nice text ;D
+
+    niceText = ""
+
+    for j in gems.keys():
+        amount = i.count(j)
+        niceText += j + ": " + str(amount) + "\n"
+
+    return niceText
 
 def bestSet(gems, gemSlots, minimumStat, minimumPercentage, rankingStat) : 
 
@@ -88,26 +95,40 @@ def bestSet(gems, gemSlots, minimumStat, minimumPercentage, rankingStat) :
     # minimumPercentage : int   -> the minimum percentage you want for the stat, ex: 99% air cap
     # rankingStat : string      -> the stat used to decide which is the best set, ex: swim speed for dive sets
 
-    # returns bestSetDict : dict   -> the same as the gem dictionary used for input but with the amount representing the number of gem used
-
-    bestMinimum = 0
-    bestRanking = 0
-    bestSet = set()
+    # returns nothing since the output is in the file it creates
 
     allCombinations = possibleCombinations(dictToSet(gems), gemSlots)
-    numberCombinations = len(allCombinations)
+    bestRanking = 0
+    bestMinimum = 0
+    bestSets = set()
 
-    for i in range(numberCombinations):
-        minimumStatTot = statSum(gems, gemSlots, minimumStat, allCombinations, i)
-        rankingStatTot = statSum(gems, gemSlots, rankingStat, allCombinations, i)
+    for i in allCombinations:
 
-        if minimumStatTot >= minimumPercentage and rankingStatTot > bestRanking:
-            bestMinimum = minimumStatTot
-            bestRanking = rankingStatTot
-            bestSet = allCombinations[i]
+        rankStatTot = statSum(gems, rankingStat, i)
+        minimumStatTot = statSum(gems, minimumStat, i)
 
-    bestSetDict = editAmount(gems, bestSet)
+        if minimumStatTot >= minimumPercentage and rankStatTot > bestRanking:
+           bestRanking = rankStatTot
+           bestMinimum = minimumStatTot
+           bestSets.clear()
+           bestSets.add(i)
 
-    return str(bestSetDict) + "\n" + minimumStat + ": " + str(bestMinimum) + "\n" + rankingStat + ": " + str(bestRanking)
+        elif minimumStatTot >= minimumPercentage and rankStatTot == bestRanking:
+            bestSets.add(i)
 
-print(bestSet(diveGems, 15, "airCap", 99, "swimSpeed"))
+    with open( "bestSets.txt", "w") as f:
+        for num, i in enumerate(bestSets, start=1):
+            f.write(
+            "Option " + str(num) + 
+            "\n\n" + 
+            writeGems(gems, i) + 
+            "\n" + 
+            minimumStat + ": " + str(bestMinimum) +
+            "\n" +
+            rankingStat + ": " + str(bestRanking) +
+            "\n\n"
+            )
+
+    return 
+
+bestSet(diveGems, 15, "airCap", 99, "swimSpeed")
